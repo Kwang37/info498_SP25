@@ -169,7 +169,7 @@
         .comfort-zone {
             position: relative;
             width: 100%;
-            height: 350px;
+            height: 450px;
             background: radial-gradient(circle, rgba(232, 245, 232, 0.8) 25%, rgba(255, 243, 205, 0.8) 55%, rgba(248, 215, 218, 0.8) 85%);
             border-radius: 20px;
             margin: 20px 0;
@@ -194,7 +194,7 @@
         }
 
         .comfort-label {
-            top: 30px;
+            top: 40px;
             left: 50%;
             transform: translateX(-50%);
             background: #d4edda;
@@ -204,7 +204,7 @@
 
         .stretch-label {
             top: 50%;
-            right: 30px;
+            right: 40px;
             transform: translateY(-50%);
             background: #fff3cd;
             color: #856404;
@@ -212,7 +212,7 @@
         }
 
         .panic-label {
-            bottom: 30px;
+            bottom: 40px;
             left: 50%;
             transform: translateX(-50%);
             background: #f8d7da;
@@ -386,7 +386,7 @@
         <header>
             <div class="logo">🌱 GrowBuddy</div>
             <div class="tagline">Your AI Companion for Self-Discovery & Growth</div>
-            <div class="age-badge">Perfect for Ages 10-14</div>
+            <div class="age-badge">Design for Ages 10-14</div>
         </header>
 
         <div class="main-content">
@@ -413,27 +413,21 @@
                 </div>
 
                 <div class="comfort-zone">
-                    <div class="zone-overlay">
-                        <div class="zone-label comfort-label">😊 Comfort Zone</div>
-                        <div class="zone-label stretch-label">🌟 Stretch Zone</div>
-                        <div class="zone-label panic-label">😰 Panic Zone</div>
-                    </div>
-                    
                     <!-- Comfort Zone Items -->
-                    <div class="interest-item interest-comfort" style="top: 70px; left: 80px;">📚 Reading Books</div>
-                    <div class="interest-item interest-comfort" style="top: 120px; left: 150px;">🎨 Drawing</div>
-                    <div class="interest-item interest-comfort" style="top: 90px; left: 250px;">🎮 Video Games</div>
+                    <div class="interest-item interest-comfort" style="top: 80px; left: 60px;">📚 Reading Books</div>
+                    <div class="interest-item interest-comfort" style="top: 120px; left: 200px;">🎨 Drawing</div>
+                    <div class="interest-item interest-comfort" style="top: 90px; left: 350px;">🎮 Video Games</div>
                     
                     <!-- Stretch Zone Items -->
-                    <div class="interest-item interest-stretch" style="top: 150px; right: 100px;">👥 Making Friends</div>
-                    <div class="interest-item interest-stretch" style="top: 100px; right: 150px;">🎤 Singing</div>
-                    <div class="interest-item interest-stretch" style="top: 200px; right: 80px;">🏃 Running Race</div>
-                    <div class="interest-item interest-stretch" style="top: 180px; left: 120px;">🎭 Acting</div>
+                    <div class="interest-item interest-stretch" style="top: 160px; right: 80px;">👥 Making Friends</div>
+                    <div class="interest-item interest-stretch" style="top: 110px; right: 200px;">🎤 Singing</div>
+                    <div class="interest-item interest-stretch" style="top: 220px; right: 60px;">🏃 Running Race</div>
+                    <div class="interest-item interest-stretch" style="top: 190px; left: 100px;">🎭 Acting</div>
                     
                     <!-- Panic Zone Items -->
-                    <div class="interest-item interest-panic" style="bottom: 80px; left: 100px;">🎤 Public Speaking</div>
-                    <div class="interest-item interest-panic" style="bottom: 60px; right: 120px;">🧗 Rock Climbing</div>
-                    <div class="interest-item interest-panic" style="bottom: 100px; left: 250px;">🎸 Performing Music</div>
+                    <div class="interest-item interest-panic" style="bottom: 90px; left: 80px;">🎤 Public Speaking</div>
+                    <div class="interest-item interest-panic" style="bottom: 60px; right: 100px;">🧗 Rock Climbing</div>
+                    <div class="interest-item interest-panic" style="bottom: 110px; left: 280px;">🎸 Performing Music</div>
                 </div>
 
                 <div class="quick-start">
@@ -590,16 +584,45 @@
 
         function addInterest() {
             const interests = [
-                {name: '🎵 Learning Guitar', zone: 'stretch'},
+                // Comfort Zone interests
                 {name: '📸 Photography', zone: 'comfort'},
+                {name: '🧪 Science Experiments', zone: 'comfort'},
+                {name: '✍️ Creative Writing', zone: 'comfort'},
+                {name: '🧩 Puzzle Solving', zone: 'comfort'},
+                {name: '🎬 Watching Movies', zone: 'comfort'},
+                {name: '🌱 Gardening', zone: 'comfort'},
+                {name: '🍳 Cooking', zone: 'comfort'},
+                {name: '🎲 Board Games', zone: 'comfort'},
+                {name: '📱 Digital Art', zone: 'comfort'},
+                {name: '🐕 Pet Care', zone: 'comfort'},
+                
+                // Stretch Zone interests
+                {name: '🎵 Learning Guitar', zone: 'stretch'},
                 {name: '💻 Coding', zone: 'stretch'},
                 {name: '💃 Dancing', zone: 'stretch'},
-                {name: '✍️ Creative Writing', zone: 'comfort'},
                 {name: '⚽ Team Sports', zone: 'stretch'},
-                {name: '🎪 Magic Tricks', zone: 'panic'},
-                {name: '🧪 Science Experiments', zone: 'comfort'},
                 {name: '🎬 Making Videos', zone: 'stretch'},
-                {name: '🗣️ Debate Club', zone: 'panic'}
+                {name: '🏸 Badminton', zone: 'stretch'},
+                {name: '🎯 Archery', zone: 'stretch'},
+                {name: '🧘 Meditation', zone: 'stretch'},
+                {name: '🎪 Magic Tricks', zone: 'stretch'},
+                {name: '🗣️ Joining Clubs', zone: 'stretch'},
+                {name: '🎨 Public Art', zone: 'stretch'},
+                {name: '📝 Blogging', zone: 'stretch'},
+                {name: '🎭 Drama Club', zone: 'stretch'},
+                {name: '🏊 Swimming', zone: 'stretch'},
+                
+                // Panic Zone interests
+                {name: '🎤 Stand-up Comedy', zone: 'panic'},
+                {name: '🗣️ Debate Club', zone: 'panic'},
+                {name: '🎸 Band Performance', zone: 'panic'},
+                {name: '🏔️ Mountain Climbing', zone: 'panic'},
+                {name: '🎪 Circus Arts', zone: 'panic'},
+                {name: '🎭 Lead Role Acting', zone: 'panic'},
+                {name: '🏃 Marathon Running', zone: 'panic'},
+                {name: '🎯 Competitive Gaming', zone: 'panic'},
+                {name: '📢 Student Leadership', zone: 'panic'},
+                {name: '🎨 Art Exhibition', zone: 'panic'}
             ];
             
             const comfortZone = document.querySelector('.comfort-zone');
@@ -609,16 +632,21 @@
             newItem.className = `interest-item interest-${randomInterest.zone}`;
             newItem.textContent = randomInterest.name;
             
-            // Random position based on zone
+            // More spread out random positions based on zone
             if (randomInterest.zone === 'comfort') {
                 newItem.style.top = Math.random() * 100 + 70 + 'px';
-                newItem.style.left = Math.random() * 200 + 80 + 'px';
+                newItem.style.left = Math.random() * 350 + 50 + 'px';
             } else if (randomInterest.zone === 'stretch') {
-                newItem.style.top = Math.random() * 120 + 100 + 'px';
-                newItem.style.right = Math.random() * 100 + 80 + 'px';
+                const side = Math.random() > 0.5;
+                newItem.style.top = Math.random() * 180 + 120 + 'px';
+                if (side) {
+                    newItem.style.right = Math.random() * 150 + 50 + 'px';
+                } else {
+                    newItem.style.left = Math.random() * 200 + 80 + 'px';
+                }
             } else {
-                newItem.style.bottom = Math.random() * 50 + 60 + 'px';
-                newItem.style.left = Math.random() * 200 + 100 + 'px';
+                newItem.style.bottom = Math.random() * 100 + 50 + 'px';
+                newItem.style.left = Math.random() * 300 + 60 + 'px';
             }
             
             // Animation
