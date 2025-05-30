@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GrowBuddy - Your AI Companion for Growth</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background: linear-gradient(135deg, #4B2E83 0%, #B7A57A 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-size: 3em;
+            font-weight: bold;
+            background: linear-gradient(45deg, #4B2E83, #B7A57A);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .tagline {
+            font-size: 1.3em;
+            color: #4B2E83;
+            margin-bottom: 20px;
+        }
+
+        .age-badge {
+            display: inline-block;
+            background: #B7A57A;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .feature-title {
+            font-size: 1.8em;
+            color: #4B2E83;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .emoji {
+            font-size: 1.2em;
+        }
+
+        .chat-container {
+            grid-column: 1 / -1;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .chat-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .chat-messages {
+            height: 300px;
+            overflow-y: auto;
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 3px solid #B7A57A;
+        }
+
+        .message {
+            margin-bottom: 15px;
+            padding: 12px 18px;
+            border-radius: 20px;
+            max-width: 80%;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .ai-message {
+            background: linear-gradient(135deg, #4B2E83, #6A4C93);
+            color: white;
+            margin-right: auto;
+        }
+
+        .user-message {
+            background: linear-gradient(135deg, #B7A57A, #D4C49A);
+            color: white;
+            margin-left: auto;
+        }
+
+        .input-area {
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 15px;
+            border: 3px solid #B7A57A;
+            border-radius: 25px;
+            font-size: 1em;
+            font-family: inherit;
+            outline: none;
+        }
+
+        .send-btn {
+            background: linear-gradient(135deg, #4B2E83, #6A4C93);
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.2s ease;
+        }
+
+        .send-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .comfort-zone {
+            position: relative;
+            width: 100%;
+            height: 250px;
+            background: radial-gradient(circle, #e8f5e8 30%, #fff3cd 60%, #f8d7da 100%);
+            border-radius: 20px;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .zone-label {
+            position: absolute;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 10px;
+            font-size: 0.9em;
+        }
+
+        .comfort-label {
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .stretch-label {
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .panic-label {
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .interest-dot {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: #4B2E83;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .interest-dot:hover {
+            transform: scale(1.5);
+        }
+
+        .challenge-list {
+            list-style: none;
+        }
+
+        .challenge-item {
+            background: linear-gradient(90deg, #B7A57A, #D4C49A);
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 15px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .challenge-item:hover {
+            transform: translateX(10px);
+        }
+
+        .challenge-completed {
+            background: linear-gradient(90deg, #28a745, #34ce57);
+            text-decoration: line-through;
+        }
+
+        .quick-start {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .start-btn {
+            background: linear-gradient(135deg, #B7A57A, #D4C49A);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 0 10px;
+            transition: transform 0.2s ease;
+        }
+
+        .start-btn:hover {
+            transform: scale(1.05);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .logo {
+                font-size: 2em;
+            }
+            
+            .input-area {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">🌱 GrowBuddy</div>
+            <div class="tagline">Your AI Companion for Self-Discovery & Growth</div>
+            <div class="age-badge">Perfect for Ages 10-14</div>
+        </header>
+
+        <div class="main-content">
+            <div class="feature-card">
+                <div class="feature-title">
+                    <span class="emoji">🗺️</span>
+                    Comfort Zone Map
+                </div>
+                <p>Visualize your interests and see where you're comfortable, where you can stretch, and what might be too scary right now!</p>
+                
+                <div class="comfort-zone">
+                    <div class="zone-label comfort-label">Comfort Zone</div>
+                    <div class="zone-label stretch-label">Stretch Zone</div>
+                    <div class="zone-label panic-label">Panic Zone</div>
+                    
+                    <div class="interest-dot" style="top: 40%; left: 35%;" title="Reading books"></div>
+                    <div class="interest-dot" style="top: 60%; left: 45%;" title="Drawing"></div>
+                    <div class="interest-dot" style="top: 70%; right: 35%;" title="Public speaking"></div>
+                    <div class="interest-dot" style="bottom: 30%; left: 25%;" title="Rock climbing"></div>
+                    <div class="interest-dot" style="top: 35%; right: 25%;" title="Making new friends"></div>
+                </div>
+
+                <div class="quick-start">
+                    <button class="start-btn" onclick="addInterest()">Add New Interest</button>
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-title">
+                    <span class="emoji">🎯</span>
+                    Personal Challenges
+                </div>
+                <p>Based on your interests and comfort zone, here are some fun challenges to help you grow!</p>
+                
+                <ul class="challenge-list">
+                    <li class="challenge-item challenge-completed" onclick="toggleChallenge(this)">
+                        ✅ Read a book in a new genre
+                    </li>
+                    <li class="challenge-item" onclick="toggleChallenge(this)">
+                        🎨 Draw something you see outside
+                    </li>
+                    <li class="challenge-item" onclick="toggleChallenge(this)">
+                        👋 Say hi to one new person today
+                    </li>
+                    <li class="challenge-item" onclick="toggleChallenge(this)">
+                        🎤 Practice speaking in front of a mirror
+                    </li>
+                </ul>
+
+                <div class="quick-start">
+                    <button class="start-btn" onclick="generateChallenge()">Get New Challenge</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="chat-container">
+            <div class="chat-header">
+                <div class="feature-title">
+                    <span class="emoji">🤖</span>
+                    Chat with GrowBuddy AI
+                </div>
+                <p>Ask me anything about trying new things, building confidence, or exploring your interests!</p>
+            </div>
+            
+            <div class="chat-messages" id="chatMessages">
+                <div class="message ai-message">
+                    Hi there! I'm GrowBuddy, your AI companion! 🌟 I'm here to help you discover new things about yourself and grow in exciting ways. What would you like to explore today?
+                </div>
+            </div>
+            
+            <div class="input-area">
+                <input 
+                    type="text" 
+                    class="chat-input" 
+                    id="chatInput" 
+                    placeholder="Type your message here..."
+                    onkeypress="handleKeyPress(event)"
+                >
+                <button class="send-btn" onclick="sendMessage()">Send 🚀</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const aiResponses = [
+            "That's a great question! Trying new things can feel scary, but remember - every expert was once a beginner. What small step could you take today?",
+            "I love your curiosity! 🌟 Growth happens when we step just outside our comfort zone. What interests you most right now?",
+            "You're being so brave by thinking about this! Remember, it's okay to feel nervous - that means you're growing! What would make you feel more confident?",
+            "That sounds exciting! 🎉 What do you think would be the most fun part about trying that?",
+            "I believe in you! 💪 Sometimes the best adventures start with just saying 'yes' to something new. What's holding you back?",
+            "You know what? Every person you admire had to start somewhere too. What would happen if you gave it a try?",
+            "That's such a thoughtful question! 🤔 What would your future self thank you for trying today?",
+            "I can hear that you're really thinking deeply about this! What would make this feel more like a fun adventure?",
+            "You're asking all the right questions! 🌈 What's one tiny step you could take that would feel exciting rather than scary?",
+            "I'm so proud of you for being curious! What would happen if you approached this like a fun experiment?"
+        ];
+
+        const challenges = [
+            "🎨 Create art with something unusual (like leaves or coffee)",
+            "📚 Read the first chapter of a book you've never heard of",
+            "🎵 Learn the lyrics to a song in a different language",
+            "🌿 Start a small plant from a seed",
+            "📝 Write a letter to your future self",
+            "🎭 Practice doing different voices or impressions",
+            "🔍 Learn one fascinating fact about space",
+            "🍳 Help cook a meal you've never made before",
+            "📞 Call a family member you haven't talked to in a while",
+            "🎪 Learn a simple magic trick or juggling"
+        ];
+
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const messages = document.getElementById('chatMessages');
+            
+            if (input.value.trim() === '') return;
+            
+            // Add user message
+            const userMessage = document.createElement('div');
+            userMessage.className = 'message user-message';
+            userMessage.textContent = input.value;
+            messages.appendChild(userMessage);
+            
+            // Clear input
+            const userInput = input.value;
+            input.value = '';
+            
+            // Add AI response after a delay
+            setTimeout(() => {
+                const aiMessage = document.createElement('div');
+                aiMessage.className = 'message ai-message';
+                aiMessage.textContent = aiResponses[Math.floor(Math.random() * aiResponses.length)];
+                messages.appendChild(aiMessage);
+                messages.scrollTop = messages.scrollHeight;
+            }, 1000);
+            
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        function toggleChallenge(element) {
+            element.classList.toggle('challenge-completed');
+            if (element.classList.contains('challenge-completed')) {
+                if (!element.textContent.includes('✅')) {
+                    element.textContent = '✅ ' + element.textContent;
+                }
+            } else {
+                element.textContent = element.textContent.replace('✅ ', '');
+            }
+        }
+
+        function generateChallenge() {
+            const challengeList = document.querySelector('.challenge-list');
+            const newChallenge = document.createElement('li');
+            newChallenge.className = 'challenge-item';
+            newChallenge.textContent = challenges[Math.floor(Math.random() * challenges.length)];
+            newChallenge.onclick = function() { toggleChallenge(this); };
+            
+            // Add with animation
+            newChallenge.style.opacity = '0';
+            newChallenge.style.transform = 'translateX(-20px)';
+            challengeList.appendChild(newChallenge);
+            
+            setTimeout(() => {
+                newChallenge.style.transition = 'all 0.5s ease';
+                newChallenge.style.opacity = '1';
+                newChallenge.style.transform = 'translateX(0)';
+            }, 100);
+        }
+
+        function addInterest() {
+            const interests = ['Cooking', 'Photography', 'Coding', 'Dancing', 'Writing', 'Sports', 'Music', 'Science'];
+            const comfortZone = document.querySelector('.comfort-zone');
+            
+            const newDot = document.createElement('div');
+            newDot.className = 'interest-dot';
+            newDot.style.top = Math.random() * 80 + 10 + '%';
+            newDot.style.left = Math.random() * 80 + 10 + '%';
+            newDot.title = interests[Math.floor(Math.random() * interests.length)];
+            
+            newDot.style.opacity = '0';
+            newDot.style.transform = 'scale(0)';
+            comfortZone.appendChild(newDot);
+            
+            setTimeout(() => {
+                newDot.style.transition = 'all 0.5s ease';
+                newDot.style.opacity = '1';
+                newDot.style.transform = 'scale(1)';
+            }, 100);
+        }
+
+        // Add some interactive sparkles on page load
+        function createSparkle() {
+            const sparkle = document.createElement('div');
+            sparkle.innerHTML = '✨';
+            sparkle.style.position = 'fixed';
+            sparkle.style.left = Math.random() * window.innerWidth + 'px';
+            sparkle.style.top = Math.random() * window.innerHeight + 'px';
+            sparkle.style.fontSize = Math.random() * 20 + 10 + 'px';
+            sparkle.style.pointerEvents = 'none';
+            sparkle.style.zIndex = '1000';
+            sparkle.style.animation = 'fadeIn 2s ease-out forwards';
+            
+            document.body.appendChild(sparkle);
+            
+            setTimeout(() => {
+                sparkle.remove();
+            }, 2000);
+        }
+
+        // Create sparkles occasionally
+        setInterval(createSparkle, 3000);
+
+        // Welcome interaction
+        setTimeout(() => {
+            const messages = document.getElementById('chatMessages');
+            const welcomeMessage = document.createElement('div');
+            welcomeMessage.className = 'message ai-message';
+            welcomeMessage.textContent = "🎉 Welcome to your growth journey! Try clicking on the interest dots in your Comfort Zone Map, or complete some challenges. I'm here whenever you want to chat!";
+            messages.appendChild(welcomeMessage);
+            messages.scrollTop = messages.scrollHeight;
+        }, 2000);
+    </script>
+</body>
+</html>
