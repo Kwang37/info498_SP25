@@ -169,60 +169,150 @@
         .comfort-zone {
             position: relative;
             width: 100%;
-            height: 250px;
-            background: radial-gradient(circle, #e8f5e8 30%, #fff3cd 60%, #f8d7da 100%);
+            height: 350px;
+            background: radial-gradient(circle, rgba(232, 245, 232, 0.8) 25%, rgba(255, 243, 205, 0.8) 55%, rgba(248, 215, 218, 0.8) 85%);
             border-radius: 20px;
             margin: 20px 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             overflow: hidden;
+            border: 3px solid #B7A57A;
+        }
+
+        .zone-overlay {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
         }
 
         .zone-label {
             position: absolute;
             font-weight: bold;
-            padding: 5px 10px;
-            border-radius: 10px;
-            font-size: 0.9em;
+            padding: 8px 15px;
+            border-radius: 15px;
+            font-size: 1em;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
         }
 
         .comfort-label {
-            top: 20px;
+            top: 30px;
             left: 50%;
             transform: translateX(-50%);
             background: #d4edda;
             color: #155724;
+            border: 2px solid #28a745;
         }
 
         .stretch-label {
             top: 50%;
-            right: 20px;
+            right: 30px;
             transform: translateY(-50%);
             background: #fff3cd;
             color: #856404;
+            border: 2px solid #ffc107;
         }
 
         .panic-label {
-            bottom: 20px;
+            bottom: 30px;
             left: 50%;
             transform: translateX(-50%);
             background: #f8d7da;
             color: #721c24;
+            border: 2px solid #dc3545;
         }
 
-        .interest-dot {
+        .interest-item {
             position: absolute;
-            width: 12px;
-            height: 12px;
-            background: #4B2E83;
-            border-radius: 50%;
+            background: white;
+            border: 3px solid #4B2E83;
+            border-radius: 20px;
+            padding: 8px 12px;
+            font-size: 0.9em;
+            font-weight: bold;
+            color: #4B2E83;
             cursor: pointer;
-            transition: transform 0.2s ease;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(75, 46, 131, 0.2);
+            white-space: nowrap;
         }
 
-        .interest-dot:hover {
-            transform: scale(1.5);
+        .interest-item:hover {
+            transform: scale(1.1);
+            background: #4B2E83;
+            color: white;
+            box-shadow: 0 6px 25px rgba(75, 46, 131, 0.4);
+        }
+
+        .interest-comfort {
+            background: #e8f5e8;
+            border-color: #28a745;
+            color: #155724;
+        }
+
+        .interest-comfort:hover {
+            background: #28a745;
+            color: white;
+        }
+
+        .interest-stretch {
+            background: #fff3cd;
+            border-color: #ffc107;
+            color: #856404;
+        }
+
+        .interest-stretch:hover {
+            background: #ffc107;
+            color: #212529;
+        }
+
+        .interest-panic {
+            background: #f8d7da;
+            border-color: #dc3545;
+            color: #721c24;
+        }
+
+        .interest-panic:hover {
+            background: #dc3545;
+            color: white;
+        }
+
+        .zone-legend {
+            display: flex;
+            justify-content: space-around;
+            margin: 15px 0;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            border: 2px solid #B7A57A;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid;
+        }
+
+        .legend-comfort {
+            background: #e8f5e8;
+            border-color: #28a745;
+        }
+
+        .legend-stretch {
+            background: #fff3cd;
+            border-color: #ffc107;
+        }
+
+        .legend-panic {
+            background: #f8d7da;
+            border-color: #dc3545;
         }
 
         .challenge-list {
@@ -307,16 +397,43 @@
                 </div>
                 <p>Visualize your interests and see where you're comfortable, where you can stretch, and what might be too scary right now!</p>
                 
+                <div class="zone-legend">
+                    <div class="legend-item">
+                        <div class="legend-color legend-comfort"></div>
+                        <span style="color: #155724;">Comfort Zone - Easy & Fun!</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color legend-stretch"></div>
+                        <span style="color: #856404;">Stretch Zone - Exciting Challenge!</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color legend-panic"></div>
+                        <span style="color: #721c24;">Panic Zone - Too Scary Now</span>
+                    </div>
+                </div>
+
                 <div class="comfort-zone">
-                    <div class="zone-label comfort-label">Comfort Zone</div>
-                    <div class="zone-label stretch-label">Stretch Zone</div>
-                    <div class="zone-label panic-label">Panic Zone</div>
+                    <div class="zone-overlay">
+                        <div class="zone-label comfort-label">😊 Comfort Zone</div>
+                        <div class="zone-label stretch-label">🌟 Stretch Zone</div>
+                        <div class="zone-label panic-label">😰 Panic Zone</div>
+                    </div>
                     
-                    <div class="interest-dot" style="top: 40%; left: 35%;" title="Reading books"></div>
-                    <div class="interest-dot" style="top: 60%; left: 45%;" title="Drawing"></div>
-                    <div class="interest-dot" style="top: 70%; right: 35%;" title="Public speaking"></div>
-                    <div class="interest-dot" style="bottom: 30%; left: 25%;" title="Rock climbing"></div>
-                    <div class="interest-dot" style="top: 35%; right: 25%;" title="Making new friends"></div>
+                    <!-- Comfort Zone Items -->
+                    <div class="interest-item interest-comfort" style="top: 70px; left: 80px;">📚 Reading Books</div>
+                    <div class="interest-item interest-comfort" style="top: 120px; left: 150px;">🎨 Drawing</div>
+                    <div class="interest-item interest-comfort" style="top: 90px; left: 250px;">🎮 Video Games</div>
+                    
+                    <!-- Stretch Zone Items -->
+                    <div class="interest-item interest-stretch" style="top: 150px; right: 100px;">👥 Making Friends</div>
+                    <div class="interest-item interest-stretch" style="top: 100px; right: 150px;">🎤 Singing</div>
+                    <div class="interest-item interest-stretch" style="top: 200px; right: 80px;">🏃 Running Race</div>
+                    <div class="interest-item interest-stretch" style="top: 180px; left: 120px;">🎭 Acting</div>
+                    
+                    <!-- Panic Zone Items -->
+                    <div class="interest-item interest-panic" style="bottom: 80px; left: 100px;">🎤 Public Speaking</div>
+                    <div class="interest-item interest-panic" style="bottom: 60px; right: 120px;">🧗 Rock Climbing</div>
+                    <div class="interest-item interest-panic" style="bottom: 100px; left: 250px;">🎸 Performing Music</div>
                 </div>
 
                 <div class="quick-start">
@@ -472,24 +589,58 @@
         }
 
         function addInterest() {
-            const interests = ['Cooking', 'Photography', 'Coding', 'Dancing', 'Writing', 'Sports', 'Music', 'Science'];
+            const interests = [
+                {name: '🎵 Learning Guitar', zone: 'stretch'},
+                {name: '📸 Photography', zone: 'comfort'},
+                {name: '💻 Coding', zone: 'stretch'},
+                {name: '💃 Dancing', zone: 'stretch'},
+                {name: '✍️ Creative Writing', zone: 'comfort'},
+                {name: '⚽ Team Sports', zone: 'stretch'},
+                {name: '🎪 Magic Tricks', zone: 'panic'},
+                {name: '🧪 Science Experiments', zone: 'comfort'},
+                {name: '🎬 Making Videos', zone: 'stretch'},
+                {name: '🗣️ Debate Club', zone: 'panic'}
+            ];
+            
             const comfortZone = document.querySelector('.comfort-zone');
+            const randomInterest = interests[Math.floor(Math.random() * interests.length)];
             
-            const newDot = document.createElement('div');
-            newDot.className = 'interest-dot';
-            newDot.style.top = Math.random() * 80 + 10 + '%';
-            newDot.style.left = Math.random() * 80 + 10 + '%';
-            newDot.title = interests[Math.floor(Math.random() * interests.length)];
+            const newItem = document.createElement('div');
+            newItem.className = `interest-item interest-${randomInterest.zone}`;
+            newItem.textContent = randomInterest.name;
             
-            newDot.style.opacity = '0';
-            newDot.style.transform = 'scale(0)';
-            comfortZone.appendChild(newDot);
+            // Random position based on zone
+            if (randomInterest.zone === 'comfort') {
+                newItem.style.top = Math.random() * 100 + 70 + 'px';
+                newItem.style.left = Math.random() * 200 + 80 + 'px';
+            } else if (randomInterest.zone === 'stretch') {
+                newItem.style.top = Math.random() * 120 + 100 + 'px';
+                newItem.style.right = Math.random() * 100 + 80 + 'px';
+            } else {
+                newItem.style.bottom = Math.random() * 50 + 60 + 'px';
+                newItem.style.left = Math.random() * 200 + 100 + 'px';
+            }
+            
+            // Animation
+            newItem.style.opacity = '0';
+            newItem.style.transform = 'scale(0)';
+            comfortZone.appendChild(newItem);
             
             setTimeout(() => {
-                newDot.style.transition = 'all 0.5s ease';
-                newDot.style.opacity = '1';
-                newDot.style.transform = 'scale(1)';
+                newItem.style.transition = 'all 0.5s ease';
+                newItem.style.opacity = '1';
+                newItem.style.transform = 'scale(1)';
             }, 100);
+            
+            // Add click event
+            newItem.addEventListener('click', function() {
+                const messages = document.getElementById('chatMessages');
+                const aiMessage = document.createElement('div');
+                aiMessage.className = 'message ai-message';
+                aiMessage.textContent = `I see you're interested in ${randomInterest.name}! That's in your ${randomInterest.zone.replace('-', ' ')}. Would you like some tips on how to get started or move it closer to your comfort zone?`;
+                messages.appendChild(aiMessage);
+                messages.scrollTop = messages.scrollHeight;
+            });
         }
 
         // Add some interactive sparkles on page load
@@ -514,12 +665,45 @@
         // Create sparkles occasionally
         setInterval(createSparkle, 3000);
 
+        // Initialize existing interest items
+        function initializeInterestItems() {
+            const interestItems = document.querySelectorAll('.interest-item');
+            interestItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const messages = document.getElementById('chatMessages');
+                    const aiMessage = document.createElement('div');
+                    aiMessage.className = 'message ai-message';
+                    
+                    const interestName = this.textContent;
+                    let zoneType = 'comfort zone';
+                    if (this.classList.contains('interest-stretch')) {
+                        zoneType = 'stretch zone';
+                    } else if (this.classList.contains('interest-panic')) {
+                        zoneType = 'panic zone';
+                    }
+                    
+                    const responses = [
+                        `Great choice clicking on "${interestName}"! Since it's in your ${zoneType}, what draws you to this activity?`,
+                        `I love that you're exploring "${interestName}"! How do you feel when you think about trying this?`,
+                        `"${interestName}" is such an interesting choice! What would make you feel more confident about this?`,
+                        `Tell me more about "${interestName}" - what excites you most about it?`
+                    ];
+                    
+                    aiMessage.textContent = responses[Math.floor(Math.random() * responses.length)];
+                    messages.appendChild(aiMessage);
+                    messages.scrollTop = messages.scrollHeight;
+                });
+            });
+        }
+
         // Welcome interaction
         setTimeout(() => {
+            initializeInterestItems(); // Initialize click events
+            
             const messages = document.getElementById('chatMessages');
             const welcomeMessage = document.createElement('div');
             welcomeMessage.className = 'message ai-message';
-            welcomeMessage.textContent = "🎉 Welcome to your growth journey! Try clicking on the interest dots in your Comfort Zone Map, or complete some challenges. I'm here whenever you want to chat!";
+            welcomeMessage.textContent = "🎉 Welcome to your growth journey! Try clicking on any interest in your Comfort Zone Map to chat about it, or complete some challenges. I'm here whenever you want to chat!";
             messages.appendChild(welcomeMessage);
             messages.scrollTop = messages.scrollHeight;
         }, 2000);
